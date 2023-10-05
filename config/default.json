@@ -1,0 +1,8 @@
+{
+  "appEnv": "development",
+  "appPrivateKey": "defaultPrivateKey",
+  "db": {
+    "name": "coures-management",
+    "connectionString": "mongodb://localhost:37017/"
+  }
+}
