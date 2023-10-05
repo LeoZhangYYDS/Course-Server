@@ -6,13 +6,22 @@ const courseType = gql`
     title: String!
     description: String!
     category: String!
+    price: Int!
     user: ID!
   }
   input CreateCourseInput {
     title: String!
     description: String!
     category: String!
+    price: Int!
     user: ID!
+  }
+
+  input updateCourseInput {
+    title: String!
+    description: String!
+    category: String!
+    price: Int!
   }
 
   type Query {
@@ -23,7 +32,7 @@ const courseType = gql`
 
   type Mutation {
     createCourse(input: CreateCourseInput!): Course
-    updateCourse(id: ID!, input: CreateCourseInput!): Course
+    updateCourse(id: ID!, input: updateCourseInput!): Course
     deleteCourse(id: ID!): Course
   }
 `;

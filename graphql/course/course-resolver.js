@@ -1,5 +1,5 @@
 const { GraphQLError } = require("graphql");
-const { isAuthenticated, isAuthorized } = require("../../helpers/auth");
+const { isAuthenticated, courseIsAithorized } = require("../../helpers/auth");
 const { Course, validateCourse } = require("../../models/course");
 
 const courseResolver = {
@@ -15,7 +15,7 @@ const courseResolver = {
           throw new Error("Course not found");
         }
         // Check if the user is authorized to delete the journal entry
-        isAuthorized(course, context);
+        courseIsAithorized(course, context);
 
         return course;
       } catch (error) {
@@ -76,7 +76,7 @@ const courseResolver = {
           description: args.input.description,
           category: args.input.category,
           user: context.user._id,
-          //   price: args.input.price,
+          price: args.input.price,
         });
 
         // Save the new journal entry to the database
@@ -104,11 +104,12 @@ const courseResolver = {
           throw new Error("Course not found");
         }
         // Check if the user is authorized to edit the journal entry
-        isAuthorized(course, context);
+        courseIsAithorized(course, context);
         // Update the journal entry with the input data
         course.title = args.input.title;
         course.description = args.input.description;
         course.category = args.input.category;
+        course.price = args.input.price;
         // Save the updated journal entry to the database
         return await course.save();
       } catch (error) {
@@ -133,7 +134,7 @@ const courseResolver = {
           throw new Error("Course not found");
         }
         // Check if the user is authorized to delete the journal entry
-        isAuthorized(course, context);
+        courseIsAithorized(course, context);
         // Delete the journal entry from the database
         await Course.deleteOne({ _id: args.id });
         // Return a success message and the deleted journal entry

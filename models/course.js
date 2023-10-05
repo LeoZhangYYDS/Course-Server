@@ -21,12 +21,12 @@ const courseSchema = new mongoose.Schema(
       enum: ["IT", "Design", "Music", "Marketing", "Health", "Finance"],
       required: true,
     },
-    // price: {
-    //   type: Number,
-    //   required: true,
-    //   minlength: 0,
-    //   maxlength: 10,
-    // },
+    price: {
+      type: Number,
+      required: true,
+      minlength: 0,
+      maxlength: 9999,
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -44,7 +44,7 @@ function validateCourse(course) {
     title: Joi.string().min(2).max(100).required(),
     description: Joi.string().min(2).max(2000).required(),
     category: Joi.string().required(),
-    // price: Joi.number().integer().min(0).max(10).required(),
+    price: Joi.number().integer().min(0).max(9999).required(),
     user: Joi.objectId().required(),
   });
   return schema.validate(course);
