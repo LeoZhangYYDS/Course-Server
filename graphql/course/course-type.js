@@ -17,7 +17,7 @@ const courseType = gql`
     user: ID!
   }
 
-  input updateCourseInput {
+  input UpdateCourseInput {
     title: String!
     description: String!
     category: String!
@@ -32,7 +32,7 @@ const courseType = gql`
 
   type Mutation {
     createCourse(input: CreateCourseInput!): Course
-    updateCourse(id: ID!, input: updateCourseInput!): Course
+    updateCourse(id: ID!, input: UpdateCourseInput!): Course
     deleteCourse(id: ID!): Course
   }
 `;
