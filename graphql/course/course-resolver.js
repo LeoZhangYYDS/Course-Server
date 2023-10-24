@@ -16,7 +16,7 @@ const courseResolver = {
         }
         // Check if the user is authorized to delete the journal entry
         courseIsAithorized(course, context);
-
+        console.log(course);
         return course;
       } catch (error) {
         // If there was an error, throw an ApolloError with a custom error code
