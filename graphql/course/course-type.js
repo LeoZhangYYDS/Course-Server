@@ -22,6 +22,7 @@ const courseType = gql`
     description: String!
     category: String!
     price: Int!
+    user: ID!
   }
 
   type Query {
